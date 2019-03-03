@@ -142,11 +142,6 @@ export default class Home extends React.Component{
                 renderItem={({item}) => this.renderItemsProducts(item)}
                 keyExtractor={(item, index) => index.toString()}
                 showsHorizontalScrollIndicator={false} />
-              <View style={{width: '100%', justifyContent: 'flex-end', alignItems: 'flex-end'}}>
-                <TouchableOpacity activeOpacity={0.7} style={{marginRight: 10, marginVertical: 5}} onPress={() => Actions.brands()}>
-                  <Text style={{fontFamily: 'Vazir-FD', color: '#00b5b8', fontSize: 14, borderBottomWidth: 1, borderBottomColor: '#00b5b8', paddingHorizontal: 2}}>مشاهده محصولات</Text>
-                </TouchableOpacity>
-              </View>
             </View>
             <View style={{width: '100%', flexDirection: 'column', marginTop: 15, alignItems: 'center'}}>
               <Image source={require('./../../pictures/list9color.png')} style={{width: 28, height: 28, resizeMode: 'contain'}}/>

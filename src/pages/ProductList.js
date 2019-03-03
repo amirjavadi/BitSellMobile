@@ -65,7 +65,7 @@ export default class ProductList extends React.Component{
     if (Actions.currentScene === 'singleProduct'){
 
     } else {
-      Actions.lightbox1({item, titleBrand: item.brandName})
+      Actions.lightbox1({item, brandTitle: item.brandName, productTitle: item.titleProduct})
     }
   }
 

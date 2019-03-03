@@ -176,7 +176,7 @@ export default class SingleProduct extends React.Component {
                         <View style={{width: '100%', flexDirection: 'row', justifyContent: 'space-between', marginTop: 7}}>
                           <View style={{flexDirection: 'row'}}>
                             <Text style={{fontSize: 12, fontFamily: 'Vazir-FD', color: item.isLock ? '#bbbbbb' : '#333333'}}>نسبت :</Text>
-                            {ite.isFixSell === true && <Text style={{fontSize: 12, fontFamily: 'Vazir-FD', color: item.isLock ? '#bbbbbb' : '#333333'}}>{ite.countSell}</Text>}
+                            {ite.isFixSell === true && <Text style={{fontSize: 12, fontFamily: 'Vazir-FD', color: item.isLock ? '#bbbbbb' : '#333333'}}>{ite.countOffer}</Text>}
                             {ite.isFixSell === false && <Text style={{fontSize: 12, fontFamily: 'Vazir-FD', color: item.isLock ? '#bbbbbb' : '#333333'}}>{' ' + ite.countSell + ' '}به 1 </Text>}
                           </View>
                         </View>

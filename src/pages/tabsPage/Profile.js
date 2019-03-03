@@ -47,9 +47,9 @@ export default class Profile extends React.Component {
     };
   }
 
-  async componentWillMount() {
+  componentWillMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress.bind(this));
-    await this.setDefaultData();
+    this.setDefaultData();
   }
 
   handleBackPress() {
@@ -61,29 +61,26 @@ export default class Profile extends React.Component {
   async setDefaultData() {
     await AsyncStorage.getItem('user')
       .then((response) => {
-        this.setDefData(response);
+        console.log(response)
+        let data = JSON.parse(response);
+        let image = data.profileImage !== null ? data.profileImage.replace(/^~+/i, '') : '';
+        this.setState({
+          createDate: data.createDate,
+          firstName: data.firstName,
+          geometryString: data.geometryString,
+          id: data.id,
+          lastName: data.lastName,
+          lock: data.lock,
+          mobileNumber: data.mobileNumber,
+          nikeName: data.nikeName,
+          ordered: data.ordered,
+          phoneNumberComfirmed: data.phoneNumberComfirmed,
+          postalAddress: data.postalAddress,
+          profileImage: api.web + image,
+          varification: data.varification,
+          GeoJSON: JSON.parse(data.geoJson)
+        });
       });
-  }
-
-  async setDefData(response) {
-    let data = JSON.parse(response);
-    let image = data.profileImage.replace(/^~+/i, '');
-    await this.setState({
-      createDate: data.createDate,
-      firstName: data.firstName,
-      geometryString: data.geometryString,
-      id: data.id,
-      lastName: data.lastName,
-      lock: data.lock,
-      mobileNumber: data.mobileNumber,
-      nikeName: data.nikeName,
-      ordered: data.ordered,
-      phoneNumberComfirmed: data.phoneNumberComfirmed,
-      postalAddress: data.postalAddress,
-      profileImage: api.web + image,
-      varification: data.varification,
-      GeoJSON: JSON.parse(data.geoJson)
-    });
   }
 
   takePicture() {

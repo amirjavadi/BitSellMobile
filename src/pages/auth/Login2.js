@@ -129,7 +129,7 @@ export default class Login2 extends React.Component{
       await AsyncStorage.setItem('pass', this.state.password);
       await AsyncStorage.setItem('data', JSON.stringify(ISO));
       await AsyncStorage.setItem('login', JSON.stringify(true));
-      Actions.reset('tabBar');
+      await Actions.reset('tabBar');
     }
   }
 

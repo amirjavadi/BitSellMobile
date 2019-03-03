@@ -1,7 +1,7 @@
 import React from 'react';
 import {Animated, Dimensions, Easing, I18nManager, Image, StyleSheet, Platform} from 'react-native';
 import {Actions, Lightbox, Router, Scene, Stack} from 'react-native-router-flux';
-import {Icon, View} from 'native-base';
+import {Icon, Text, View} from 'native-base';
 import MapboxGL from '@mapbox/react-native-mapbox-gl';
 import RestartAndroid from 'react-native-restart-android';
 import Pushe from 'react-native-pushe'
@@ -62,6 +62,8 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     Pushe.initialize(true);
+    Text.defaultProps = Text.defaultProps || {};
+    Text.defaultProps.allowFontScaling = false;
     this.state = {
       name: '',
     };

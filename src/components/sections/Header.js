@@ -35,9 +35,9 @@ export default class Header extends React.Component{
                 textAlign: 'center',
                 fontFamily: 'Vazir-Bold-FD',
               }
-            }), fontSize: 16, color: 'white', marginHorizontal: 20}}>BITSELL</Text> : <Button transparent={true} onPress={() => Actions.pop()}><Icon name="arrow-forward" ios="ios-arrow-forward" android="md-arrow-forward" style={{color: 'white', fontSize: 22}}/></Button>}
+            }), fontSize: 16, color: 'white', marginHorizontal: 10}}>BITSELL</Text> : <Button transparent={true} onPress={() => Actions.pop()}><Icon name="arrow-forward" ios="ios-arrow-forward" android="md-arrow-forward" style={{color: 'white', fontSize: 22}}/></Button>}
         </Left>
-        <Body>{this.props.name !== 'خانه' && <Text style={[HeaderStyle.title, {fontSize: this.props.name.length > 14 ? 10 : 15}]}>{this.props.name}</Text>}</Body>
+        <Body>{this.props.name !== 'خانه' && <Text numberOfLines={1} style={[HeaderStyle.title, {fontSize: this.props.name.length > 14 ? 10 : 14, textAlign: 'center', justifyContent: 'center', alignItems: 'center'}]}>{this.props.name}</Text>}</Body>
         <Right style={HeaderStyle.right}>
           <Button transparent={true} onPress={() => this.props.screen === 'cart' ? {} : this.check()}><Icon name="cart" ios="ios-cart" android="md-cart" style={HeaderStyle.cartButton}/></Button>
         </Right>
