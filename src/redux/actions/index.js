@@ -1,6 +1,6 @@
 import * as types from './type';
 
-export const addCart = (brandTitle, productImage, productTitle, productId, groupTitle, groupId, daysTitle, groupPrice, tariffId, count, lockProducts) => ({
+export const addCart = (brandTitle, productImage, productTitle, productId, groupTitle, groupId, daysTitle, groupPrice, tariffId, count, lockProducts, minOrderd, maxOrdered) => ({
   type: types.ADD_CART,
   brandTitle,
   productImage,
@@ -12,7 +12,9 @@ export const addCart = (brandTitle, productImage, productTitle, productId, group
   groupPrice,
   tariffId,
   count,
-  lockProducts
+  lockProducts,
+  minOrderd,
+  maxOrdered,
 });
 
 export const removeCart = (productId, groupId, tariffId, count) => ({

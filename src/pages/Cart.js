@@ -49,31 +49,41 @@ class Cart extends React.Component {
           }
         }
       });
+      data[j].lockItemPrice = lockItemPrice;
       itemPrice += ((data[j].groupPrice * data[j].count) + lockItemPrice);
       lockItemPrice = 0;
     }
-    this.setState({mainPrice: itemPrice});
+    this.setState({mainPrice: itemPrice, data});
   }
 
   increaseOrder(item){
     let data = this.state.data;
-    item.count +=1;
-    this.setState({
-      data
-    });
-    this.countPrice();
+    console.log(item.count, item.minOrderd, item.maxOrdered);
+    if (item.count === item.maxOrdered) {
+      //do nothing
+    } else {
+      item.count += 1;
+      this.setState({
+        data
+      });
+      this.countPrice();
+    }
   }
 
   decreaseOrder(item){
     let data = this.state.data;
-    item.count -=1;
-    if (item.count <= 1){
-      item.count = 1
+    if (item.count === item.minOrderd) {
+      //do nothing
+    } else {
+      item.count -=1;
+      if (item.count <= 1){
+        item.count = 1
+      }
+      this.setState({
+        data
+      });
+      this.countPrice();
     }
-    this.setState({
-      data
-    });
-    this.countPrice();
   }
 
   deleteProduct(item) {
@@ -109,6 +119,7 @@ class Cart extends React.Component {
 
   renderItems(item) {
     if (this.state.data.length > 0) {
+      console.log(item, item.lockItemPrice);
       return (
         <View style={{
           width: deviceWidth - 20,
@@ -218,9 +229,9 @@ class Cart extends React.Component {
             </View>
           </View>
           </View>
-          <View style={{width: '100%', height: 30, flexDirection: 'row', borderTopWidth: 1, borderTopColor: '#dcdcdc', marginTop: 5, justifyContent: 'space-between', alignItems: 'center'}}>
+          <View style={{width: '100%', height: 30, flexDirection: 'row', borderTopWidth: 1, borderTopColor: '#dcdcdc', marginTop: 5, justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 10}}>
             <Text style={{fontSize: 10, color: '#333333', fontFamily: 'Vazir-FD'}}>قیمت کالاهای قفل شده:</Text>
-            <Text></Text>
+            <Text style={{fontSize: 10, color: '#333333', fontFamily: 'Vazir-FD'}}>{item.lockItemPrice > 0 ? item.lockItemPrice.toLocaleString('fa-IR').replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' تومان' : item.lockItemPrice}</Text>
           </View>
         </View>
       )

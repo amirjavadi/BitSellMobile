@@ -35,18 +35,14 @@ export default class Splash extends React.Component{
 
   async componentDidMount() {
     await AsyncStorage.getItem('firstTime').then((result) => {
-      console.log(1, result)
       if (result === null) {
         this.setState({status: 1});
-        console.log(2, this.state.status);
         AsyncStorage.setItem('firstTime', JSON.stringify(1));
       } else if (result === '1') {
         this.setState({status: 3});
-        console.log(3, this.state.status);
         AsyncStorage.setItem('firstTime', JSON.stringify(1));
       }
     });
-    console.log(4, this.state.status);
     this.splash();
   }
 
@@ -108,7 +104,7 @@ export default class Splash extends React.Component{
     let headers = {
       'Content-Type': 'application/json',
     };
-    console.log(JSON.stringify(data))
+    console.log(JSON.stringify(data));
     axios.post(api.url + '/api/LogApp/AddLogApp', JSON.stringify(data), {headers: headers})
       .then((response) => {
         // i dont know
@@ -120,7 +116,6 @@ export default class Splash extends React.Component{
     await NetInfo.isConnected.fetch().then((isConnected) => {
       this.setState({online: isConnected}, () => {
         if (isConnected === true) {
-          axios.post()
           Actions.reset('tabBar')
         } else {
           this.setState({online: false})

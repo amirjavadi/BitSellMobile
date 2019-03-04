@@ -73,6 +73,7 @@ export default class SingleProduct extends React.Component {
     let lock = [];
     await axios.get(api.url + '/api/Tariff/GetTariffs?productId=' + this.props.productId + '&$expand=LockProducts', {headers: headers})
       .then((response) => {
+        console.log(response)
           for (let i = 0; i < response.data.length; i++) {
             for (let j = 0; j < response.data[i].lockProducts.length; j++) {
               lock.push(response.data[i].lockProducts[j])
@@ -113,6 +114,8 @@ export default class SingleProduct extends React.Component {
         groupPrice: item.price,
         tariffId: item.tariffId,
         lockProducts: item.lockProducts,
+        maxOrdered: item.maxOrdered,
+        minOrderd: item.minOrderd,
       })
     }
   }
@@ -176,8 +179,10 @@ export default class SingleProduct extends React.Component {
                         <View style={{width: '100%', flexDirection: 'row', justifyContent: 'space-between', marginTop: 7}}>
                           <View style={{flexDirection: 'row'}}>
                             <Text style={{fontSize: 12, fontFamily: 'Vazir-FD', color: item.isLock ? '#bbbbbb' : '#333333'}}>نسبت :</Text>
-                            {ite.isFixSell === true && <Text style={{fontSize: 12, fontFamily: 'Vazir-FD', color: item.isLock ? '#bbbbbb' : '#333333'}}>{ite.countOffer}</Text>}
-                            {ite.isFixSell === false && <Text style={{fontSize: 12, fontFamily: 'Vazir-FD', color: item.isLock ? '#bbbbbb' : '#333333'}}>{' ' + ite.countSell + ' '}به 1 </Text>}
+                            {ite.isFixSell === true && ite.isOffer && <Text style={{fontSize: 12, fontFamily: 'Vazir-FD', color: item.isLock ? '#bbbbbb' : '#333333'}}>{ite.countOffer}</Text>}
+                            {ite.isFixSell === true && !ite.isOffer && <Text style={{fontSize: 12, fontFamily: 'Vazir-FD', color: item.isLock ? '#bbbbbb' : '#333333'}}>{ite.countSell}</Text>}
+                            {ite.isFixSell === false && ite.isOffer && <Text style={{fontSize: 12, fontFamily: 'Vazir-FD', color: item.isLock ? '#bbbbbb' : '#333333'}}>{' ' + ite.countOffer + ' '}به 1 </Text>}
+                            {ite.isFixSell === false && !ite.isOffer && <Text style={{fontSize: 12, fontFamily: 'Vazir-FD', color: item.isLock ? '#bbbbbb' : '#333333'}}>{' ' + ite.countSell + ' '}به 1 </Text>}
                           </View>
                         </View>
                       </View>

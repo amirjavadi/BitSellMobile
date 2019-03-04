@@ -34,8 +34,35 @@ export default class ProductList extends React.Component{
       'Authorization': 'Basic ' + btoa(this.state.ISO),
     };
     let products = [];
-    axios.get(api.url + '/api/Product/GetProductsCategory?categoryId=' + this.props.item.id + '&$expand=Brand', {headers: headers})
+    // axios.get(api.url + '/api/Product/GetProductsCategory?categoryId=' + this.props.item.id + '&$expand=Brand', {headers: headers})
+    //   .then((response) => {
+    //     console.log(response)
+    //     if (response.data.length < 1 ){
+    //       this.setState({noData: true})
+    //     } else {
+    //       for (let i = 0; i < response.data.length; i++) {
+    //         let obj = {
+    //           id: response.data[i].id,
+    //           titleProduct: response.data[i].titleProduct,
+    //           subTitleProduct: response.data[i].subTitleProduct,
+    //           imageIndex: response.data[i].imageIndex,
+    //           max: response.data[i].max.toLocaleString('fa-IR').replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' تومان',
+    //           min: response.data[i].min.toLocaleString('fa-IR').replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' تومان',
+    //           sellUnit: response.data[i].sellUnit,
+    //           amountDetail: response.data[i].amountDetail,
+    //           detailUnit: response.data[i].detailUnit,
+    //           countCompany: response.data[i].countCompany,
+    //           brandName: response.data[i].brand.titleBrand,
+    //         };
+    //         products.push(obj);
+    //       }
+    //       this.setState({products: products});
+    //     }
+    //   })
+    //   .catch((error) => console.info(error));
+    axios.get(api.url + '/api/Product/GetProductsWithExtendFields?categoryId=' + this.props.item.id + '&$expand=Brand', {headers: headers})
       .then((response) => {
+        console.log(response)
         if (response.data.length < 1 ){
           this.setState({noData: true})
         } else {
@@ -58,14 +85,16 @@ export default class ProductList extends React.Component{
           this.setState({products: products});
         }
       })
-      .catch((error) => console.info(error))
+      .catch((error) => {
+        console.info(error)
+      })
   }
 
   check(item){
     if (Actions.currentScene === 'singleProduct'){
 
     } else {
-      Actions.lightbox1({item, brandTitle: item.brandName, productTitle: item.titleProduct})
+      Actions.lightbox1({productImage: item.imageIndex, productTitle: item.titleProduct, productId: item.id, min: item.min, max: item.max, brandTitle: item.brandName})
     }
   }
 

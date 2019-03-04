@@ -27,7 +27,7 @@ export default class Search extends React.Component{
     if (Actions.currentScene === 'singleProduct'){
 
     } else {
-      Actions.lightbox1({item, titleBrand: item.brandName})
+      Actions.lightbox1({productImage: item.imageIndex, productId: item.id, min: item.min, max: item.max, brandTitle: item.brandName, productTitle: item.titleProduct})
     }
   }
 

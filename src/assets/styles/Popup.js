@@ -38,7 +38,7 @@ export default PopupStyle = StyleSheet.create({
   order: {
     flexDirection: 'row',
     width: '70%',
-    height: '56%',
+    height: '40%',
     alignItems: 'center',
     justifyContent: 'center',
     marginHorizontal: 50,
@@ -57,8 +57,7 @@ export default PopupStyle = StyleSheet.create({
     fontSize: 14,
     marginHorizontal: 10,
     fontFamily: 'Vazir-FD',
-    borderWidth: 0.5,
-    borderColor: '#666666',
+    borderWidth: 1,
     padding: 0,
   },
   linear: {
@@ -81,6 +80,9 @@ export default PopupStyle = StyleSheet.create({
         fontFamily: 'Vazir-Bold-FD',
       }
     }),
-  }
-
+  },
+  reng: {
+    fontFamily: 'Vazir-FD',
+    marginTop: 10,
+  },
 })

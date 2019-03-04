@@ -1,9 +1,12 @@
 import React from 'react';
-import {Dimensions, FlatList, Image, Platform, StatusBar, TouchableNativeFeedback, TouchableOpacity} from 'react-native';
+import {AsyncStorage, Dimensions, FlatList, Image, Platform, StatusBar, TouchableNativeFeedback, TouchableOpacity} from 'react-native';
 import {View, Text, Container, Content, Icon, Spinner, Thumbnail} from 'native-base';
 import Header from '../../components/sections/Header';
 import Slider from '../../components/Slider';
 import {Actions} from 'react-native-router-flux';
+import axios from 'axios';
+import api from '../../api.js';
+import {encode} from 'base-64';
 
 const {width: deviceWidth, height: deviceHeight} = Dimensions.get('window');
 
@@ -44,7 +47,36 @@ export default class Home extends React.Component{
           price: '0',
         },
       ],
+      topBrands: [],
     }
+  }
+
+  async componentDidMount() {
+    await AsyncStorage.getItem('data').then(res => {
+      let response = JSON.parse(res);
+      this.setState({ISO: response})
+    });
+    if (!global.btoa) {
+      global.btoa = encode;
+    }
+    let headers = {
+      'Authorization': 'Basic ' + btoa(this.state.ISO),
+    };
+    axios.get(api.url + '/api/Brand/Brands?$select=Id,ImageBrand,TitleBrand', {headers: headers})
+      .then((response) => {
+        console.log(1, response);
+      })
+      .catch((error) => console.log(error));
+    axios.get(api.url + '/api/Product/GetAllProducts', {headers: headers})
+      .then((response) => {
+        console.log(2, response);
+      })
+      .catch((error) => console.log(error));
+    // axios.get(api.url + '/api/Brand/Brands?$select=Id,ImageBrand,TitleBrand', {headers: headers})
+    //   .then((response) => {
+    //     console.log(3, response);
+    //   })
+    //   .catch((error) => console.log(error));
   }
 
   renderItemsBrands(item) {
@@ -131,7 +163,7 @@ export default class Home extends React.Component{
             </View>
             <View style={{width: '100%', flexDirection: 'column', marginTop: 15, alignItems: 'center'}}>
               <Icon type="FontAwesome" name="archive" style={{color: '#999999', fontSize: 28}}/>
-              <Text style={{fontFamily: 'Vazir-FD', fontSize: 14, color: '#333333', paddingVertical: 2}}>پرفروش ترین محصولات</Text>
+              <Text style={{fontFamily: 'Vazir-FD', fontSize: 14, color: '#333333', paddingVertical: 2}}>برترین محصولات</Text>
               <Image source={require('./../../pictures/line.png')} style={{width: '90%', marginTop: 3, resizeMode: 'contain'}} />
             </View>
             <View style={{width: '100%', height: deviceWidth / 3 + 30}}>

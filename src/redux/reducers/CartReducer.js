@@ -4,7 +4,7 @@ const initialState = [];
 
 export default function(state = initialState, action = {}) {
 
-  let {brandTitle, productImage, productTitle, productId, groupTitle, groupId, daysTitle, groupPrice, tariffId, count, lockProducts} = action;
+  let {brandTitle, productImage, productTitle, productId, groupTitle, groupId, daysTitle, groupPrice, tariffId, count, lockProducts, minOrderd, maxOrdered} = action;
   switch (action.type) {
     case ADD_CART:
       let newState = [];
@@ -13,7 +13,7 @@ export default function(state = initialState, action = {}) {
           item.productId === productId && item.groupId === groupId && item.tariffId === tariffId
         ));
        if (index < 0) {
-         newState = [...state, {brandTitle: brandTitle, productImage: productImage, productTitle: productTitle, productId: productId, groupTitle: groupTitle, groupId: groupId, daysTitle: daysTitle, groupPrice: groupPrice, tariffId: tariffId, count: parseInt(count), lockProducts}];
+         newState = [...state, {brandTitle: brandTitle, productImage: productImage, productTitle: productTitle, productId: productId, groupTitle: groupTitle, groupId: groupId, daysTitle: daysTitle, groupPrice: groupPrice, tariffId: tariffId, count: parseInt(count), lockProducts, minOrderd, maxOrdered}];
        } else {
          newState = state;
        }
