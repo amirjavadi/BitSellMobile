@@ -150,7 +150,7 @@ android {
 }
 
 dependencies {
-compile 'com.google.android.gms:play-services-gcm:16.1.0'
+    compile 'com.google.android.gms:play-services-gcm:16.1.0'
     compile 'com.google.android.gms:play-services-location:16.0.0'
     compile project(':react-native-pushe')
     compile project(':react-native-device-info')

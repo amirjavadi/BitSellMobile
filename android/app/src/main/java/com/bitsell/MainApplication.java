@@ -32,12 +32,12 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RCTMGLPackage(),
             new RNPushePackage(),
             new RNDeviceInfo(),
             new RNRestartAndroidPackage(),
             new RNViewShotPackage(),
             new PickerPackage(),
-            new RCTMGLPackage(),
             new ReactNativeRestartPackage(),
             new VectorIconsPackage(),
             new LinearGradientPackage()
