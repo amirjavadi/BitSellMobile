@@ -20,7 +20,7 @@ class Popup extends React.Component {
 
 	async addToCart() {
     await this.props.addCart(this.props.brandTitle, this.props.productImage, this.props.productTitle, this.props.productId, this.props.groupTitle, this.props.groupId, this.props.daysTitle, this.props.groupPrice, this.props.tariffId, parseInt(this.state.count), this.props.lockProducts, this.props.minOrderd, this.props.maxOrdered);
-		Actions.pop('popup')
+		Actions.pop();
 	}
 
 	checkReng() {
