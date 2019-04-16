@@ -79,7 +79,7 @@ export default class Brands extends React.Component{
           backgroundColor="#404e67"
           barStyle="light-content"
         />
-        <Header name="برندها"/>
+        <Header name="برندها" currentScene={'brands'}/>
         <Content style={{backgroundColor: '#dddddd'}}>
           <View style={{paddingVertical: 20, paddingHorizontal: 20, backgroundColor: '#dddddd'}}>
             {this.state.noData &&

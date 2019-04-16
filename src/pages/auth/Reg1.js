@@ -125,7 +125,8 @@ export default class Reg1 extends Component{
               </View>
             </View>
             <Text style={{display: this.state.userLocked ? 'flex' : 'none', fontSize: 12, fontFamily: 'Vazir-FD', color: 'red', marginLeft: 20}}>نام کاربری شما قفل شده است.</Text>
-            <Text style={{display: this.state.goLogin ? 'flex' : 'none', fontSize: 12, fontFamily: 'Vazir-FD', color: 'red', marginLeft: 20}}>این شماره تلفن قبلا ثبت نام کرده است.لطفا واد شوید.</Text>
+            <Text style={{display: this.state.goLogin ? 'flex' : 'none', fontSize: 12, fontFamily: 'Vazir-FD', color: 'red', marginLeft: 20}}>
+              این شماره تلفن قبلا ثبت نام کرده است.لطفا وارد شوید.</Text>
             <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={!this.state.disabled ? ['#148e91', '#2a6e85', '#3b527b'] : ['#cccccc', '#cccccc', '#cccccc']} style={{marginTop: 20, borderRadius: 15, zIndex: 15}}>
               <TouchableOpacity activeOpacity={0.5} style={RegisterStyle.buttonGradient} onPress={() => this.sendSMS()} disabled={this.state.disabled}>
                 {!this.state.loader && <Text style={RegisterStyle.nextBtnText}>ثبت</Text>}

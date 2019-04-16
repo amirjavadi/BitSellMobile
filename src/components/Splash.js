@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimensions, Image, Animated, Easing, StatusBar, TouchableOpacity, Platform, StyleSheet, AsyncStorage, NetInfo, AppState} from 'react-native';
+import {Dimensions, Image, Animated, Easing, StatusBar, TouchableOpacity, Platform, StyleSheet, AsyncStorage, NetInfo} from 'react-native';
 import {Body, Button, Icon, Left, Right, Text, View} from 'native-base';
 import {Actions} from 'react-native-router-flux';
 import Login1Style from '../assets/styles/Login1';

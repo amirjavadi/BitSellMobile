@@ -4,7 +4,6 @@ import {Actions, Lightbox, Router, Scene, Stack} from 'react-native-router-flux'
 import {Icon, Text, View} from 'native-base';
 import MapboxGL from '@mapbox/react-native-mapbox-gl';
 import RestartAndroid from 'react-native-restart-android';
-import Pushe from 'react-native-pushe'
 //components
 import Splash from './components/Splash';
 import Popup from './components/Popup';
@@ -23,7 +22,6 @@ import MyAccount from './pages/MyAccount';
 import Reg1 from './pages/auth/Reg1';
 import Reg2 from './pages/auth/Reg2';
 import Reg3 from './pages/auth/Reg3';
-import ProfilePopup from './components/ProfilePopup';
 import PassPopup from './components/PassPopup';
 import ProductList from './pages/ProductList';
 //redux
@@ -33,6 +31,8 @@ import configureStore from './redux/store';
 import ForgetPass from './pages/auth/ForgetPass';
 import SetNewPass from './pages/auth/SetNewPass';
 import Success from './pages/Success';
+import Header from './components/sections/Header';
+import CartRemovePopup from './assets/styles/CartRemovePopup';
 
 I18nManager.forceRTL(true);
 
@@ -61,7 +61,6 @@ export default class App extends React.Component {
 
   constructor(props) {
     super(props);
-    Pushe.initialize(true);
     Text.defaultProps = Text.defaultProps || {};
     Text.defaultProps.allowFontScaling = false;
     this.state = {
@@ -178,6 +177,7 @@ export default class App extends React.Component {
                 <Scene hideNavBar key="reg2" component={Reg2} />
                 <Scene hideNavBar key="reg3" component={Reg3} />
               </Scene>
+              <Scene component={Header} hideNavBar key="header" />
             </Scene>
           </RouterWithRedux>
         </PersistGate>

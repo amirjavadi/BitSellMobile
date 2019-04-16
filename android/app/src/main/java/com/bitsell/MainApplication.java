@@ -3,13 +3,12 @@ package com.bitsell;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.reactlibrary.RNPushePackage;
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.rnrestartandroid.RNRestartAndroidPackage;
 import fr.greweb.reactnativeviewshot.RNViewShotPackage;
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import com.mapbox.rctmgl.RCTMGLPackage;
-import com.avishayil.rnrestart.ReactNativeRestartPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.facebook.react.ReactNativeHost;
@@ -32,13 +31,12 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ReactNativePushNotificationPackage(),
             new RCTMGLPackage(),
-            new RNPushePackage(),
             new RNDeviceInfo(),
             new RNRestartAndroidPackage(),
             new RNViewShotPackage(),
             new PickerPackage(),
-            new ReactNativeRestartPackage(),
             new VectorIconsPackage(),
             new LinearGradientPackage()
       );

@@ -35,8 +35,12 @@ export default HeaderStyle = StyleSheet.create({
     fontSize: 24,
   },
   cartButton: {
-    marginLeft: 10,
     marginRight: 17,
+    color: 'white',
+    fontSize: 24,
+  },
+  bellButton: {
+    marginRight: 5,
     color: 'white',
     fontSize: 24,
   }

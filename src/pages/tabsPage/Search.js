@@ -122,7 +122,7 @@ export default class Search extends React.Component{
             <TouchableOpacity activeOpacity={0.7} style={{width: 30, height: 30, alignItems: 'center', justifyContent: 'center'}} onPress={() => this._search()}>
               <Icon type="MaterialCommunityIcons" name="magnify" style={{fontSize: 22, color: '#aaaaaa', textAlign: 'right', direction: 'rtl'}}/>
             </TouchableOpacity>
-            <Input placeholder="جستجو..." style={{width: deviceWidth - 80, height: 35, paddingVertical: 0, paddingHorizontal: 5, fontFamily: 'Vazir-FD', fontSize: 14}} onSubmitEditing={()=> this._search()} onChangeText={(text) => {
+            <Input placeholder="جستجو..." style={{width: deviceWidth - 80, height: deviceHeight / 18, paddingVertical: 0, paddingHorizontal: 5, fontFamily: 'Vazir-FD', fontSize: 14}} onSubmitEditing={()=> this._search()} onChangeText={(text) => {
               let persian = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
               let english = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
               for (let i = 0; i < 10; i++) {
