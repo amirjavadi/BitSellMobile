@@ -3,8 +3,8 @@ import {Dimensions} from 'react-native';
 
 const {width: deviceWidth, height: deviceHeight} = Dimensions.get('window');
 
-let ProfilePopup;
-export default ProfilePopup = StyleSheet.create({
+let CartRemovePopup;
+export default CartRemovePopup = StyleSheet.create({
   mainView: {
     width: '100%',
     height: '100%',
@@ -66,5 +66,19 @@ export default ProfilePopup = StyleSheet.create({
       }
     }),
   },
-
+  text: {
+    color: '#333333',
+    fontSize: 14,
+    ...Platform.select({
+      ios: {
+        fontFamily: 'Vazir-FD',
+        fontWeight: 'bold',
+        textAlign: 'center'
+      },
+      android: {
+        textAlign: 'center',
+        fontFamily: 'Vazir-Bold-FD',
+      }
+    }),
+  }
 })

@@ -31,6 +31,14 @@ class Header extends React.Component{
     }
   }
 
+  check1(){
+    if (Actions.currentScene === 'notifications'){
+
+    } else {
+      Actions.cart()
+    }
+  }
+
   async componentDidMount() {
     console.log(Actions.currentScene);
     await AsyncStorage.getItem('data').then(res => {
@@ -102,7 +110,7 @@ class Header extends React.Component{
         </Left>
         <Body>{this.props.name !== 'خانه' && <Text numberOfLines={1} style={[HeaderStyle.title, {fontSize: this.props.name.length > 14 ? 10 : 14, textAlign: 'center', justifyContent: 'center', alignItems: 'center'}]}>{this.props.name}</Text>}</Body>
         <Right style={HeaderStyle.right}>
-          <Button transparent={true} onPress={() => {}}>
+          <Button transparent={true} onPress={() => this.props.screen === 'notifications' ? {} : this.check1()}>
             <Icon name="bell" type="MaterialCommunityIcons" style={HeaderStyle.bellButton} />
             <View style={{position: 'absolute', top: 5, left: 5, borderWidth: 2, borderColor: '#404e67', borderRadius: 200}}>
               {this.state.notifLength > 0 && <Text style={[HeaderStyle.title, {width: 17, height: 17, fontSize: 10, backgroundColor: '#404e67', borderWidth: 1, borderColor: 'white', borderRadius: 200, textAlign: 'center', zIndex: 2, paddingRight: 0, paddingLeft: 0, paddingTop: 0, paddingBottom: 0, alignItems: 'center', justifyContent: 'center'}]}>{this.state.notifLength <= 9 ? this.state.notifLength : '9+'}</Text>}

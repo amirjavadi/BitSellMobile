@@ -8,6 +8,8 @@ import axios from 'axios';
 import {encode} from 'base-64';
 import {removeCart, removeHoleCart} from '../redux/actions';
 import {Actions} from 'react-native-router-flux';
+import CartRemovePopup from '../assets/styles/CartRemovePopup';
+import BaseLightbox from '../components/lightbox/BaseLightbox';
 
 const {width: deviceWidth, height: deviceHeight} = Dimensions.get('window');
 
@@ -87,16 +89,44 @@ class Cart extends React.Component {
   }
 
   deleteProduct(item) {
+    this.setState({popup: true});
     let data = this.state.data;
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].groupId === item.groupId && data[i].productId === item.productId && data[i].tariffId === item.tariffId){
-        this.props.removeCart(item.productId, item.groupId, item.tariffId, item.count);
-        data.splice(i, 1);
-        break;
+    this.verifyDelete((valid) => {
+      if (valid) {
+        console.log(1, 'true');
+        // for (let i = 0; i < data.length; i++) {
+        //   if (data[i].groupId === item.groupId && data[i].productId === item.productId && data[i].tariffId === item.tariffId){
+        //     this.props.removeCart(item.productId, item.groupId, item.tariffId, item.count);
+        //     data.splice(i, 1);
+        //     break;
+        //   }
+        // }
+        // this.setState({data});
+        // this.countPrice();
+      } else {
+        console.log(2, 'false');
+        // this.setState({popup: false})
       }
-    }
-    this.setState({data});
-    this.countPrice();
+    });
+  }
+
+  verifyDelete(callback) {
+    return (
+      <BaseLightbox verticalPercent={0.7} horizontalPercent={0.26} close={false} backgroundColor={'rgba(52,52,52,0.5)'}>
+        <View style={CartRemovePopup.mainView}>
+          <View style={CartRemovePopup.order}>
+            <Text style={CartRemovePopup.text}>محصول حذف شود؟</Text>
+          </View>
+          <View style={{flexDirection: 'row'}}>
+            <TouchableOpacity activeOpacity={0.7} style={{width: '45%', height: 40, borderRadius: 15}} onPress={() => {return callback(true)}}>
+              <Text style={CartRemovePopup.submitText}>تایید</Text>
+            </TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.7} style={{width: '45%', height: 40, borderRadius: 15}} onPress={() => Actions.pop()}>
+              <Text style={CartRemovePopup.submitText}>انصراف</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </BaseLightbox>)
   }
 
   async reduxEmpty() {

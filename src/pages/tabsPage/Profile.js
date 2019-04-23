@@ -52,6 +52,10 @@ export default class Profile extends React.Component {
     this.setDefaultData();
   }
 
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress.bind(this));
+  }
+
   handleBackPress() {
     if (this.state.modal === true) {
       return true;

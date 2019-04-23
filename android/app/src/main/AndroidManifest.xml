@@ -1,19 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
     package="com.bitsell">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-    <uses-sdk tools:overrideLibrary="co.ronash.pushe"/>
-    <permission android:name="com.bitsell.permission.C2D_MESSAGE" android:protectionLevel="signature"/>
-    <uses-permission android:name="com.bitsell.permission.C2D_MESSAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-
-    <!-- Optional permissions -->
-    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application
       android:name=".MainApplication"
@@ -32,27 +22,6 @@
         </intent-filter>
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
-
-        <receiver android:name="co.ronash.pushe.receiver.UpdateReceiver" >
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REPLACED"/>
-                <data android:path="com.bitsell" android:scheme="package"/>
-            </intent-filter>
-        </receiver>
-
-        <receiver
-                android:exported="true"
-                android:name="com.google.android.gms.gcm.GcmReceiver"
-                android:permission="com.google.android.c2dm.permission.SEND">
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-                <category android:name="com.bitsell"/>
-            </intent-filter>
-        </receiver>
-
-        <meta-data android:name="co.ronash.pushe.token" android:value="PUSHE_934397601463"/>
-        <meta-data android:name="co.ronash.pushe.cr" android:value="Tm9uZQ=="/>
     </application>
 
 </manifest>
